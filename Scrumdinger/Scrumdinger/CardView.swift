@@ -1,5 +1,5 @@
 //
-//  CardView.swift
+//  ScrumView.swift
 //  Scrumdinger
 //
 //  Created by 민성홍 on 2021/06/04.

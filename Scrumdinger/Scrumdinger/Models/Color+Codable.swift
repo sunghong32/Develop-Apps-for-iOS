@@ -1,5 +1,5 @@
 //
-//  Color+Codable.swift
+//  ScrumView.swift
 //  Scrumdinger
 //
 //  Created by 민성홍 on 2021/06/04.
@@ -29,7 +29,7 @@ extension Color: Codable {
         let blue = Double.random(in: 0...1)
         return Color(.sRGB, red: red, green: green, blue: blue, opacity: 1)
     }
-
+    
     private var components: Components {
         var red: CGFloat = 0
         var green: CGFloat = 0
@@ -50,7 +50,7 @@ extension Color: Codable {
         let alpha = try container.decode(Double.self, forKey: .alpha)
         self.init(Components(red: red, green: green, blue: blue, alpha: alpha))
     }
-
+    
     private init(_ components: Components) {
         self.init(.sRGB, red: components.red, green: components.green, blue: components.blue, opacity: components.alpha)
     }
@@ -73,7 +73,7 @@ extension Color: Codable {
         UIColor(self).getRed(&red, green: &green, blue: &blue, alpha: nil)
         return isLightColor(red: red, green: green, blue: blue) ? .black : .white
     }
-
+    
     private func isLightColor(red: CGFloat, green: CGFloat, blue: CGFloat) -> Bool {
         let lightRed = red > 0.65
         let lightGreen = green > 0.65
@@ -83,4 +83,3 @@ extension Color: Codable {
         return lightness >= 2
     }
 }
-
