@@ -16,11 +16,11 @@ struct DetailView: View {
             Section(header: Text("Meeting Info")) {
                 NavigationLink(
                     destination: MeetingView(scrum: $scrum)) {
-                        Label("Start Meeting", systemImage: "timer")
-                            .font(.headline)
-                            .foregroundColor(.accentColor)
-                            .accessibilityLabel(Text("Start meeting"))
-                    }
+                    Label("Start Meeting", systemImage: "timer")
+                        .font(.headline)
+                        .foregroundColor(.accentColor)
+                        .accessibilityLabel(Text("Start meeting"))
+                }
                 HStack {
                     Label("Length", systemImage: "clock")
                         .accessibilityLabel(Text("Meeting length"))
@@ -40,6 +40,19 @@ struct DetailView: View {
                     Label(attendee, systemImage: "person")
                         .accessibilityLabel(Text("Person"))
                         .accessibilityValue(Text(attendee))
+                }
+            }
+            Section(header: Text("History")) {
+                if scrum.history.isEmpty {
+                    Label("No meetings yet", systemImage: "calendar.badge.exclamationmark")
+                }
+                ForEach(scrum.history) { history in
+                    NavigationLink(destination: HistoryView(history: history)) {
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text(history.date, style: .date)
+                        }
+                    }
                 }
             }
         }
